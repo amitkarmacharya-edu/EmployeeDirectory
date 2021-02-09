@@ -1,9 +1,7 @@
-    
 import React from "react";
-import "./style.css";
 
-function Main(props) {
-  return <main className="main">{props.children}</main>;
+function Col(props) {
+  return <col className="col-sm-10 col-md-8 mb-2 m-auto">{props.children}</col>;
 }
 
-export default Main
+export default Col
