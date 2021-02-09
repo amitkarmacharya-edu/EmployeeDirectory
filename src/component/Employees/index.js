@@ -1,59 +1,54 @@
-import React, { Component, useEffect, useState } from "react";
-import Row from "./component/Row";
-import Col from "./component/Col";
-import SearchBar from "./component/SearchBar";
-import SearchResults from "./component/SearchResults";
-import Alerts from "./component/Alerts";
+import React, { useEffect, useState } from "react";
+import Row from "../Row";
+import Col from "../Col";
+import SearchBar from "../SearchBar";
+import SearchResults from "../SearchResults";
 import API from "../../utils/API";
 
 function Employees() {
 
-    const [search, setSearch] = useState("");
-    const [sort, setSortBy] = useState("");
     const [results, setResults] = useState([]);
-    const [filteredResults, setfilteredResults] = useState([]);
+    const [filteredResults, setFilteredResults] = useState([]);
 
     useEffect(() => {
-        setAlert({ type: loading, msg: "Loading...." });
         API.getRandomEmployee()
             .then(res => {
                 setResults(res.data.results);
+                setFilteredResults(res.data.results);
             })
             .catch(err => {
-                setAlert({ type: "err", msg: err })
+                console.log(err);
             });
     }, []);
 
     const onInputChange = event => {
-        const employeesList = results.filter(res => {
-            return res.name.first.toLowerCase() + " " + res.name.last.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1;
+        console.log(event.target.value);
+        const employeesList = results.filter(emp => {
+            return (emp.name.first.toLowerCase() + " " + emp.name.last.toLowerCase()).indexOf(event.target.value.toLowerCase()) > -1;
         });
+        
         setFilteredResults(employeesList);
     };
 
     const sortBy = event => {
-        set
+        let sortParam = event.target.value.toLowerCase();
+        let sortedEmployeeList = [];
+        console.log(sortParam);
 
-        const sortParam = event.target.value.toLowerCase();
-        const sortedEmployeeList = [];
+        console.log(sortParam === "first name");
 
         if (sortParam === 'first name') {
-            sortedEmployeeList = results.sort((a, b) => (a.name.first > b.name.first) ? 1 : -1);
-        }
-
-        if (sortParam === 'last name') {
+            sortedEmployeeList = results.sort((a, b) => {
+                return (a.name.first > b.name.first) ? 1 : -1;
+            });
+        } else if (sortParam === 'last name') {
             sortedEmployeeList = results.sort((a, b) => (a.name.last > b.name.last) ? 1 : -1);
-        }
-
-        if (sortParam === 'years working') {
+        } else if (sortParam === 'years working') {
             sortedEmployeeList = results.sort((a, b) => (a.registered.age > b.registered.age) ? 1 : -1);
         }
-
-        setFilteredResults(sortedEmployeeList);
+        
+        setFilteredResults([...sortedEmployeeList]);
     };
-
-
-
 
     return (
         <>
@@ -65,7 +60,7 @@ function Employees() {
 
             <Row>
                 <Col>
-                    <SearchResults eList={filteredResults} />
+                    <SearchResults results={filteredResults} />
                 </Col>
             </Row>
         </>
