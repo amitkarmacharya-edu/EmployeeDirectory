@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/component/SearchBar/style.css"],"names":[],"mappings":"AAAA,YACI,aAAc,CACd,kBACF,CAEA,gCACE,WAAY,CACZ,eACF","file":"main.b031bb58.chunk.css","sourcesContent":["form.search {\n    overflow: auto;\n    margin-bottom: 10px;\n  }\n  \n  form.search button[type=\"submit\"] {\n    float: right;\n    margin-top: 10px;\n  }"]}
