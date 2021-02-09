@@ -1,9 +1,7 @@
-    
 import React from "react";
-import "./style.css";
 
-function Main(props) {
-  return <main className="main">{props.children}</main>;
+function Header(props) {
+  return <header className="container-fluid">{props.children}</header>;
 }
 
-export default Main
+export default Header;
