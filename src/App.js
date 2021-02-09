@@ -3,7 +3,8 @@ import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Main from "./component/Main";
 import Row from "./component/Row";
-import Col from "./component/Col";
+import Employees from "./component/Employees";
+import "bootstrap/dist/css/bootstrap.css";
 import './App.css';
 
 function App() {
@@ -11,10 +12,7 @@ function App() {
     <div>
       <Header />
         <Main>
-              <Row>
-                <Col>
-                </Col>
-              </Row>
+          <Employees />
         </Main>
       <Footer />
     </div>
