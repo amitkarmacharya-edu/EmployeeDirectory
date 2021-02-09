@@ -1,9 +1,7 @@
-    
-import React from "react";
-import "./style.css";
+    import React from "react";
 
-function Main(props) {
-  return <main className="main">{props.children}</main>;
+function Row(props) {
+  return <row className="row">{props.children}</row>;
 }
 
-export default Main
+export default Row;
